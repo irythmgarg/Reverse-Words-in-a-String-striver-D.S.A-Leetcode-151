@@ -1,0 +1,54 @@
+class Solution {
+public:
+    // Function to reverse a portion of the string from index 'a' to 'b'
+    void reverse(string &s, int a, int b) {
+        while(a < b) 
+            swap(s[a++], s[b--]); // Swap characters and move 'a' and 'b' towards each other
+    }
+
+    // Function to reverse words in a given string
+    string reverseWords(string s) { 
+        // Step 1: Reverse the entire string
+        reverse(s, 0, s.length() - 1); // This turns the whole string upside down
+        
+        int i = 0;
+        int j = 0;
+        int k = s.length() - 1;
+
+        // Step 2: Remove trailing spaces from the string
+        while(k >= 0 and s[k] == ' ') // Check from the end and move 'k' until a non-space character is found
+            k--;
+
+        // Step 3: Remove leading spaces from the string
+        while(i <= k and s[i] == ' ') // Move 'i' until a non-space character is found
+            i++;
+
+        int start = i; // Mark the start of the string without leading spaces
+
+        // Step 4: Process each word in the string
+        while(i <= k) {
+            int p = j; // Mark the starting index of the current word
+            
+            // Step 5: Process individual characters within the word
+            while(i <= k and s[i] != ' ') // Iterate until a space or end of string is encountered
+                s[j++] = s[i++]; // Copy characters to the front
+            
+            // Step 6: Reverse the current word
+            reverse(s, p, j - 1); // Reverse the word between indices 'p' and 'j-1'
+            
+            // Step 7: Handle spaces between words
+            if(i >= k)
+                break; // If end of string is reached, exit the loop
+            s[j++] = ' '; // Add a space between words
+            
+            // Step 8: Skip any extra spaces between words
+            while(i <= k and s[i] == ' ') // Skip any spaces between words
+                i++; 
+        }
+        
+        // Step 9: Trim the result to remove any extra spaces at the end
+        s = s.substr(0, j); // Take substring from the beginning to the last valid character
+        
+        return s; // Return the final string with reversed words
+    }
+};
