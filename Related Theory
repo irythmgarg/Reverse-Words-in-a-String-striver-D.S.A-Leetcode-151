@@ -1,0 +1,31 @@
+Theory Explanation:
+Reversing the entire string: The function reverse(s, 0, s.length() - 1) first reverses the entire string. This is the foundation for reversing the individual words within the string. Reversing the string is a crucial step because once we reverse the entire string, we just need to reverse the words individually to get the correct result.
+
+Handling spaces:
+
+The loop checks for leading spaces and removes them by adjusting the starting index (i).
+Similarly, trailing spaces are removed by adjusting the ending index (k).
+Within the loop, after processing a word, spaces are added between words unless the end of the string is reached.
+Reversing words: After identifying the beginning and end of a word, it is reversed in place by calling reverse(s, p, j-1). This ensures that each word is placed in the correct order.
+
+Trimming extra spaces: Once all words are processed and separated by single spaces, we use s.substr(0, j) to cut off any extra trailing spaces and get the final result.
+
+Space Complexity:
+Auxiliary Space: The algorithm uses a constant amount of extra space (O(1)) for operations such as the temporary variables i, j, k, and p.
+The reverse() function doesn't require extra space since it swaps the characters in place.
+Final Space Complexity: O(1) for extra space used by the function, but the space complexity of the input string is O(n) where n is the length of the string. This is the space required to store the string itself, but it is not considered auxiliary space.
+Time Complexity:
+Reversing the entire string: The function reverse() is called once to reverse the whole string, which takes O(n) time.
+Processing the words: In the worst case, the string may contain only one word (no spaces), and the entire string must be processed. In general, the string is processed in O(n) time, where n is the length of the string.
+Sub-string operation: The operation s.substr(0, j) also takes O(n) time in the worst case.
+Final Time Complexity: O(n), where n is the length of the string.
+Overall Complexity:
+Time Complexity: O(n), where n is the length of the input string.
+Space Complexity: O(1) auxiliary space, but the space used for the input string is O(n).
+This solution is efficient both in terms of time and space.
+
+
+
+
+
+
